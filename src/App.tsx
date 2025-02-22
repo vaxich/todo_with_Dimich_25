@@ -44,6 +44,11 @@ function App() {
 
   }
 
+  const changeStatus = (taskId: string) => {
+    const newState = tasks.map( task => task.id === taskId ? {... task, isDone: !task.isDone} : task)
+    setTasks(newState)
+  }
+
 let taskForTodolist = tasks;
 if (filter === "Active") {
   taskForTodolist = tasks.filter(task => task.isDone === false)
@@ -59,9 +64,11 @@ if (filter === "Completed") {
       <Todolist
         title='что учить'
         tasks={taskForTodolist}
+        filter={filter}
         removeTask={removeTask}
         changeFilter = {changeFilter}
         addTask = {addTask}
+        changeStatus={changeStatus}
       />
 
 
